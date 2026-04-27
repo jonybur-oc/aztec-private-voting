@@ -1,0 +1,17 @@
+node_modules/
+.next/
+dist/
+build/
+*.log
+.env
+.env.local
+.DS_Store
+
+# Noir / Aztec build artifacts
+contracts/target/
+contracts/proofs/
+**/Prover.toml.lock
+
+# Editor
+.vscode/
+.idea/

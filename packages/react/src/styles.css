@@ -1,0 +1,401 @@
+.apv-receipt {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 24px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: #111;
+  max-width: 480px;
+}
+
+.apv-receipt__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.apv-receipt__check {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e6f7ed;
+  color: #1f7a3a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.apv-receipt__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.apv-receipt__meta {
+  margin: 16px 0 20px;
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.apv-receipt__meta dt {
+  color: #666;
+  display: inline;
+  margin-right: 6px;
+}
+
+.apv-receipt__meta dd {
+  display: inline;
+  margin: 0;
+  color: #111;
+}
+
+.apv-receipt__meta > div {
+  display: block;
+}
+
+.apv-receipt__fingerprint {
+  background: #f7f7f7;
+  padding: 12px 14px;
+  border-radius: 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.apv-receipt__fingerprint label {
+  font-size: 12px;
+  color: #555;
+}
+
+.apv-receipt__fingerprint-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.apv-receipt__fingerprint-value {
+  font-family: ui-monospace, monospace;
+  font-size: 14px;
+  background: transparent;
+}
+
+.apv-receipt__copy {
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.apv-receipt__explainer {
+  font-size: 14px;
+  color: #444;
+  margin: 16px 0;
+  line-height: 1.45;
+}
+
+.apv-receipt__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.apv-receipt__primary {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.apv-receipt__secondary {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.apv-receipt__how-to {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f3f6ff;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.apv-receipt__how-to ol {
+  margin: 8px 0 8px 18px;
+  padding: 0;
+}
+
+.apv-receipt__link {
+  background: transparent;
+  color: #1a52d6;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.apv-eligibility {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.apv-eligibility--checking {
+  background: #f3f3f3;
+  color: #444;
+}
+
+.apv-eligibility--ok {
+  background: #e6f7ed;
+  color: #1f7a3a;
+}
+
+.apv-eligibility--no,
+.apv-eligibility--error {
+  background: #fdecec;
+  color: #a4232a;
+}
+
+.apv-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #444;
+  animation: apv-spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes apv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.apv-ballot {
+  display: grid;
+  gap: 16px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  max-width: 480px;
+}
+
+.apv-ballot__options {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.apv-ballot__title {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 0 4px;
+}
+
+.apv-ballot__description {
+  margin: 0 0 8px;
+  color: #555;
+  font-size: 14px;
+}
+
+.apv-ballot__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.apv-ballot__submit {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.apv-ballot__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.apv-ballot__error {
+  color: #a4232a;
+  font-size: 14px;
+}
+
+.apv-result {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  max-width: 560px;
+}
+
+.apv-result__title {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.apv-result__meta {
+  margin: 0 0 16px;
+  color: #555;
+  font-size: 14px;
+}
+
+.apv-result__bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.apv-result__bar-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.apv-result__bar-track {
+  height: 10px;
+  background: #f0f0f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.apv-result__bar-fill {
+  height: 100%;
+  background: #1a52d6;
+}
+
+.apv-result__verified {
+  font-size: 14px;
+  color: #1f7a3a;
+  margin-top: 16px;
+}
+
+.apv-result__verify-toggle {
+  margin-top: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.apv-verifier {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.apv-verifier__row {
+  display: flex;
+  gap: 8px;
+}
+
+.apv-verifier__row input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: ui-monospace, monospace;
+}
+
+.apv-verifier__ok {
+  color: #1f7a3a;
+  font-size: 14px;
+}
+
+.apv-verifier__no {
+  color: #a4232a;
+  font-size: 14px;
+}
+
+.apv-verifier__error {
+  color: #a4232a;
+  font-size: 13px;
+}
+
+.apv-admin {
+  display: grid;
+  gap: 20px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  max-width: 600px;
+}
+
+.apv-admin__section {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.apv-admin__section legend {
+  font-weight: 600;
+  padding: 0 6px;
+}
+
+.apv-admin label {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.apv-admin input,
+.apv-admin textarea,
+.apv-admin select {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.apv-admin__option-row {
+  display: flex;
+  gap: 8px;
+}
+
+.apv-admin__option-row input {
+  flex: 1;
+}
+
+.apv-admin__deploy {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.apv-admin__deploy:disabled {
+  opacity: 0.6;
+}
+
+.apv-admin__error {
+  color: #a4232a;
+  font-size: 14px;
+}
