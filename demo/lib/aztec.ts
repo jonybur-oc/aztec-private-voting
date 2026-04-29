@@ -1,4 +1,4 @@
-import type { AccountWalletWithSecretKey, PXE } from '@aztec/aztec.js';
+import type { AccountWalletWithSecretKey, Fq, PXE } from '@aztec/aztec.js';
 
 export async function createDemoWallet(pxe: PXE): Promise<AccountWalletWithSecretKey> {
   const { getSchnorrAccount } = await import(
@@ -30,10 +30,12 @@ function restoreOrCreateSecret(key: string): bigint {
   return value;
 }
 
-function restoreOrCreateGrumpkin(
-  key: string,
-  GrumpkinScalar: { fromString: (s: string) => unknown; random: () => unknown },
-): ReturnType<typeof GrumpkinScalar.random> {
+interface GrumpkinScalarCtor {
+  fromString: (s: string) => Fq;
+  random: () => Fq;
+}
+
+function restoreOrCreateGrumpkin(key: string, GrumpkinScalar: GrumpkinScalarCtor): Fq {
   const existing = typeof window !== 'undefined' ? window.localStorage.getItem(key) : null;
   if (existing) {
     return GrumpkinScalar.fromString(existing);

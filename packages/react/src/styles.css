@@ -242,6 +242,16 @@
   font-size: 14px;
 }
 
+.apv-ballot__closed {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: #f3f3f3;
+  color: #444;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  max-width: 480px;
+}
+
 .apv-result {
   font-family: ui-sans-serif, system-ui, sans-serif;
   max-width: 560px;

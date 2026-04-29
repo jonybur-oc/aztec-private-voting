@@ -25,6 +25,15 @@ export function VoteEligibilityProof({
     }
   }, [status, proof, reason, onEligible, onIneligible]);
 
+  if (status === 'connecting') {
+    return (
+      <div className="apv-eligibility apv-eligibility--checking" role="status">
+        <span className="apv-spinner" aria-hidden="true" />
+        <span>Connecting wallet...</span>
+      </div>
+    );
+  }
+
   if (status === 'checking') {
     return (
       <div className="apv-eligibility apv-eligibility--checking" role="status">

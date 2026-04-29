@@ -1,26 +1,24 @@
 export interface NullifierInput {
   voteId: string;
   walletAddress: string;
-  secret: bigint;
 }
 
+// Deterministic per (voteId, voter). Same voter resubmitting on the same vote
+// produces the same nullifier, so the on-chain double-vote check rejects it.
+// Privacy note: an observer with the voter's address can compute this nullifier
+// and check whether they voted. Production deployments should derive the
+// nullifier from a wallet-private secret instead - see docs/receipt-design.md.
 export async function deriveNullifier(input: NullifierInput): Promise<bigint> {
-  const { poseidon2Hash, Fr } = await import('@aztec/aztec.js');
+  const { Fr } = await import('@aztec/aztec.js');
+  const { poseidon2Hash } = await import('@aztec/foundation/crypto');
   const voteIdField = Fr.fromString(toHex(input.voteId));
   const addressField = Fr.fromString(input.walletAddress);
-  const secretField = new Fr(input.secret);
-  const hash = await poseidon2Hash([voteIdField, addressField, secretField]);
+  const hash = await poseidon2Hash([voteIdField, addressField]);
   return hash.toBigInt();
 }
 
-export function generateVoteSecret(): bigint {
-  const bytes = new Uint8Array(31);
-  crypto.getRandomValues(bytes);
-  let value = 0n;
-  for (const byte of bytes) {
-    value = (value << 8n) | BigInt(byte);
-  }
-  return value;
+export function fingerprintFromNullifier(nullifier: bigint): string {
+  return `0x${nullifier.toString(16).padStart(64, '0')}`;
 }
 
 function toHex(value: string): string {

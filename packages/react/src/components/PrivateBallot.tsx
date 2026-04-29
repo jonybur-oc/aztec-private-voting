@@ -17,8 +17,27 @@ export function PrivateBallot({
   const [selected, setSelected] = useState<number | null>(null);
   const { castVote, status, error } = useVote(config);
 
+  const now = Date.now();
+  const notStarted = now < config.startTime;
+  const closed = now >= config.endTime;
   const submitting = status === 'submitting';
-  const disabled = submitting || selected === null;
+  const disabled = submitting || selected === null || notStarted || closed;
+
+  if (closed) {
+    return (
+      <p className="apv-ballot__closed" role="status">
+        This vote has closed and is no longer accepting ballots.
+      </p>
+    );
+  }
+
+  if (notStarted) {
+    return (
+      <p className="apv-ballot__closed" role="status">
+        This vote has not opened yet.
+      </p>
+    );
+  }
 
   const handleSubmit = async (): Promise<void> => {
     if (selected === null) return;
