@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import { useAztecClient } from '../aztec/context';
+import { translateVoteError } from '../aztec/errors';
 import { deriveNullifier, fingerprintFromNullifier } from '../aztec/nullifier';
 import { loadVotingContract } from '../aztec/voting';
 import type { EligibilityProof, VoteConfig, VoteReceipt } from '../types';
@@ -66,23 +67,4 @@ export function useVote(config: VoteConfig): UseVoteResult {
   );
 
   return { castVote, status, error, receipt };
-}
-
-function translateVoteError(message: string): string {
-  if (/nullifier already used/i.test(message)) {
-    return 'You have already voted on this proposal.';
-  }
-  if (/voting ended/i.test(message)) {
-    return 'This vote has closed and is no longer accepting ballots.';
-  }
-  if (/voting not started/i.test(message)) {
-    return 'This vote has not opened yet.';
-  }
-  if (/already finalized/i.test(message)) {
-    return 'This vote has already been finalized.';
-  }
-  if (/invalid choice/i.test(message)) {
-    return 'That option is not on the ballot.';
-  }
-  return message;
 }
