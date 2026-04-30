@@ -10,7 +10,7 @@ import type {
   VoteReceiptData,
 } from '@aztec-private-voting/react';
 
-import { buildSampleVote } from '../lib/sampleVote';
+import { buildSampleVote, getDeployedContractAddress } from '../lib/sampleVote';
 
 const AztecBoot = dynamic(
   () => import('../components/AztecBoot').then((m) => m.AztecBoot),
@@ -18,11 +18,12 @@ const AztecBoot = dynamic(
 );
 
 export default function ActiveVotePage(): JSX.Element {
-  const contractAddress = process.env.NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS;
+  const contractAddress = getDeployedContractAddress();
   if (!contractAddress) {
     return (
       <div className="boot-error">
-        Set NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS in .env.local to run the demo.
+        No contract address found. Either set NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS in
+        .env.local, or run <code>npm run deploy:testnet</code> from the repo root.
       </div>
     );
   }

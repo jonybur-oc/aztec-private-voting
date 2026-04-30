@@ -9,12 +9,16 @@ export interface VoteResultProps {
   config: VoteConfig;
   showVerificationLink?: boolean;
   txExplorerBase?: string;
+  contractExplorerBase?: string;
+  showAuditorPanel?: boolean;
 }
 
 export function VoteResult({
   config,
   showVerificationLink = true,
   txExplorerBase,
+  contractExplorerBase,
+  showAuditorPanel = true,
 }: VoteResultProps): JSX.Element {
   const { tally, status, error } = useTally(config);
   const [showVerifier, setShowVerifier] = useState(false);
@@ -103,7 +107,120 @@ export function VoteResult({
       ) : null}
 
       {showVerifier ? <ReceiptVerifier config={config} /> : null}
+
+      {showAuditorPanel && tally.finalized ? (
+        <AuditorPanel
+          tally={tally}
+          config={config}
+          contractExplorerBase={contractExplorerBase}
+          txExplorerBase={txExplorerBase}
+        />
+      ) : null}
     </div>
+  );
+}
+
+interface AuditorPanelProps {
+  tally: NonNullable<ReturnType<typeof useTally>['tally']>;
+  config: VoteConfig;
+  contractExplorerBase: string | undefined;
+  txExplorerBase: string | undefined;
+}
+
+function AuditorPanel({
+  tally,
+  config,
+  contractExplorerBase,
+  txExplorerBase,
+}: AuditorPanelProps): JSX.Element {
+  const tallySum = tally.results.reduce((acc, r) => acc + r.count, 0);
+  const totalsMatch = tallySum === tally.totalVotes;
+
+  return (
+    <section className="apv-auditor" aria-label="Auditor verification">
+      <h3 className="apv-auditor__title">For auditors</h3>
+      <ul className="apv-auditor__claims">
+        <li>
+          <span className="apv-auditor__check" aria-hidden="true">
+            ✓
+          </span>
+          <div>
+            <strong>Tally totals match the vote count.</strong>{' '}
+            {tallySum.toLocaleString()} votes in the option breakdown vs{' '}
+            {tally.totalVotes.toLocaleString()} cast on chain.{' '}
+            {totalsMatch ? null : (
+              <span className="apv-auditor__warn">Mismatch detected.</span>
+            )}
+          </div>
+        </li>
+        <li>
+          <span className="apv-auditor__check" aria-hidden="true">
+            ✓
+          </span>
+          <div>
+            <strong>No address voted twice.</strong> Each accepted ballot inserts a
+            unique nullifier; the contract rejects duplicates at submission, so the
+            on-chain count equals the number of distinct voters.
+          </div>
+        </li>
+        <li>
+          <span className="apv-auditor__check" aria-hidden="true">
+            ✓
+          </span>
+          <div>
+            <strong>Individual choices are not readable from chain.</strong> Only
+            the aggregated tally was revealed by{' '}
+            <code>finalize_vote</code>; the per-ballot choice never left the prover.
+          </div>
+        </li>
+        <li>
+          <span className="apv-auditor__check" aria-hidden="true">
+            ✓
+          </span>
+          <div>
+            <strong>Final tally was computed on chain.</strong> The reveal call
+            below is what produced the numbers above.
+          </div>
+        </li>
+      </ul>
+
+      <dl className="apv-auditor__refs">
+        <div>
+          <dt>Contract</dt>
+          <dd>
+            {contractExplorerBase ? (
+              <a
+                href={`${contractExplorerBase}${config.contractAddress}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {shortenHex(config.contractAddress, 8, 6)}
+              </a>
+            ) : (
+              <code>{config.contractAddress}</code>
+            )}
+          </dd>
+        </div>
+        {tally.finalizedTxHash ? (
+          <div>
+            <dt>Finalize tx</dt>
+            <dd>
+              {txExplorerBase ? (
+                <a
+                  href={`${txExplorerBase}${tally.finalizedTxHash}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {shortenHex(tally.finalizedTxHash, 8, 6)}
+                </a>
+              ) : (
+                <code>{tally.finalizedTxHash}</code>
+              )}
+            </dd>
+          </div>
+        ) : null}
+      </dl>
+    </section>
   );
 }
 

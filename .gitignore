@@ -10,6 +10,7 @@ build/
 # Noir / Aztec build artifacts
 contracts/target/
 contracts/proofs/
+demo/public/private_voting-PrivateVoting.json
 **/Prover.toml.lock
 
 # Editor

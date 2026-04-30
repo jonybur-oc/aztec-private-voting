@@ -92,15 +92,26 @@ A full working example - eligibility check, ballot, receipt, and tally - is in `
 To compile the Noir contracts:
 
 ```sh
-cd contracts
-nargo compile
+npm run build:contracts
 ```
 
 This produces `contracts/target/private_voting-PrivateVoting.json`. Copy that JSON into `demo/public/` (or wherever your app loads contract artifacts from) before running the demo.
 
-To deploy to Aztec Alpha Network: use `<VoteAdmin />` from a wallet with funded fee-payer, or call `Contract.deploy(...)` from `@aztec/aztec.js` directly.
+To deploy a fresh `PrivateVoting` contract to Aztec Alpha testnet:
 
-Aztec Alpha Network deployment addresses will be added once the Wave 3 grant deployment lands.
+```sh
+npm run deploy:testnet
+```
+
+Full run book in [docs/deployment.md](docs/deployment.md). The script writes the deployed address to `deployments/alpha-testnet.json`, which the demo reads automatically.
+
+### Aztec Alpha testnet deployment
+
+| Field                | Value                                                           |
+| -------------------- | --------------------------------------------------------------- |
+| Network              | Aztec Alpha testnet (`https://rpc.testnet.aztec-labs.com`)      |
+| `PrivateVoting`      | _populated by `npm run deploy:testnet` - see `deployments/alpha-testnet.json`_ |
+| Deployed at          | _populated by deploy script_                                    |
 
 ## Running the demo locally
 
