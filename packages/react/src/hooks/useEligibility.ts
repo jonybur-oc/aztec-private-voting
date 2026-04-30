@@ -4,7 +4,12 @@ import { useAztec } from '../aztec/context';
 import { loadVotingContract } from '../aztec/voting';
 import type { EligibilityProof, VoteConfig } from '../types';
 
-export type EligibilityStatus = 'checking' | 'eligible' | 'ineligible' | 'error';
+export type EligibilityStatus =
+  | 'connecting'
+  | 'checking'
+  | 'eligible'
+  | 'ineligible'
+  | 'error';
 
 export interface UseEligibilityResult {
   status: EligibilityStatus;
@@ -15,20 +20,21 @@ export interface UseEligibilityResult {
 export function useEligibility(config: VoteConfig): UseEligibilityResult {
   const { client, loading, error } = useAztec();
   const [state, setState] = useState<UseEligibilityResult>({
-    status: 'checking',
+    status: 'connecting',
     proof: null,
     reason: null,
   });
 
   useEffect(() => {
     if (loading) {
-      setState({ status: 'checking', proof: null, reason: null });
+      setState({ status: 'connecting', proof: null, reason: null });
       return;
     }
     if (error || !client) {
       setState({ status: 'error', proof: null, reason: error ?? 'No Aztec client' });
       return;
     }
+    setState({ status: 'checking', proof: null, reason: null });
 
     let cancelled = false;
     const run = async (): Promise<void> => {

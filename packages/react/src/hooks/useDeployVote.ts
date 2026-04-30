@@ -84,7 +84,8 @@ export function useDeployVote(): UseDeployVoteResult {
 }
 
 async function hashTitle(title: string): Promise<bigint> {
-  const { poseidon2Hash, Fr } = await import('@aztec/aztec.js');
+  const { Fr } = await import('@aztec/aztec.js');
+  const { poseidon2Hash } = await import('@aztec/foundation/crypto');
   const encoder = new TextEncoder();
   const bytes = encoder.encode(title);
   const fields: InstanceType<typeof Fr>[] = [];
