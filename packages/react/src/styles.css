@@ -409,3 +409,219 @@
   color: #a4232a;
   font-size: 14px;
 }
+
+.apv-admin__hint {
+  color: #777;
+  font-size: 13px;
+  margin: 0;
+}
+
+.apv-admin__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.apv-admin__nav button {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.apv-admin__nav button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.apv-admin__stepper {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.apv-admin__step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  background: #f3f3f3;
+  color: #555;
+}
+
+.apv-admin__step--active {
+  background: #111;
+  color: #fff;
+}
+
+.apv-admin__step--done {
+  background: #e6f7ed;
+  color: #1f7a3a;
+}
+
+.apv-admin__step-index {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.apv-admin__step--pending .apv-admin__step-index {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.apv-admin__preview {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 16px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.apv-admin__preview dt {
+  color: #555;
+}
+
+.apv-admin__preview dd {
+  margin: 0;
+  color: #111;
+}
+
+.apv-admin__preview ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.apv-admin__preview-title {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.apv-facilitator {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  max-width: 640px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.apv-facilitator__title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.apv-facilitator__address {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #666;
+  word-break: break-all;
+}
+
+.apv-facilitator__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.apv-facilitator__meta > div {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.apv-facilitator__meta dt {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.apv-facilitator__meta dd {
+  margin: 0;
+  font-size: 16px;
+  color: #111;
+}
+
+.apv-facilitator__count {
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.apv-facilitator__privacy {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  background: #f3f6ff;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.apv-facilitator__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.apv-facilitator__finalize {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.apv-facilitator__finalize:disabled {
+  background: #d9d9d9;
+  cursor: not-allowed;
+}
+
+.apv-facilitator__finalize-hint {
+  font-size: 13px;
+  color: #777;
+}
+
+.apv-facilitator__error {
+  margin: 0;
+  font-size: 13px;
+  color: #a4232a;
+}
+
+.apv-facilitator__result {
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+
+.apv-facilitator__result h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.apv-facilitator__result ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.apv-facilitator__result li {
+  display: flex;
+  justify-content: space-between;
+}

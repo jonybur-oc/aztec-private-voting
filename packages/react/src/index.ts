@@ -3,12 +3,15 @@ export { PrivateBallot } from './components/PrivateBallot';
 export { VoteReceipt } from './components/VoteReceipt';
 export { VoteResult } from './components/VoteResult';
 export { VoteAdmin } from './components/VoteAdmin';
+export { VoteFacilitator } from './components/VoteFacilitator';
 
 export { useEligibility } from './hooks/useEligibility';
 export { useVote } from './hooks/useVote';
 export { useTally } from './hooks/useTally';
 export { useVerifyReceipt } from './hooks/useVerifyReceipt';
 export { useDeployVote } from './hooks/useDeployVote';
+export { useVoteCount } from './hooks/useVoteCount';
+export { useFinalizeVote } from './hooks/useFinalizeVote';
 
 export {
   AztecProvider,
@@ -36,3 +39,4 @@ export type { PrivateBallotProps } from './components/PrivateBallot';
 export type { VoteReceiptProps } from './components/VoteReceipt';
 export type { VoteResultProps } from './components/VoteResult';
 export type { VoteAdminProps } from './components/VoteAdmin';
+export type { VoteFacilitatorProps } from './components/VoteFacilitator';

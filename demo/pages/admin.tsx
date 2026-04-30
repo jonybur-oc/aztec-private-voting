@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { VoteAdmin } from '@aztec-private-voting/react';
+import { VoteAdmin, VoteFacilitator } from '@aztec-private-voting/react';
 import type { VoteConfig } from '@aztec-private-voting/react';
 
 const AztecBoot = dynamic(
@@ -14,13 +14,12 @@ export default function AdminPage(): JSX.Element {
     <AztecBoot>
       {deployed ? (
         <div className="demo-deployed">
-          <h2>Vote deployed</h2>
-          <p>Contract address:</p>
-          <code>{deployed.contractAddress}</code>
           <p>
-            Add this to <code>NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS</code> in your{' '}
-            <code>.env.local</code> and restart the dev server.
+            Vote deployed at <code>{deployed.contractAddress}</code>. Add this to
+            <code> NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS</code> in your{' '}
+            <code>.env.local</code> to wire the voter and result pages.
           </p>
+          <VoteFacilitator config={deployed} />
         </div>
       ) : (
         <VoteAdmin onDeployed={setDeployed} />
