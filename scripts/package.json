@@ -1,0 +1,18 @@
+{
+  "name": "@aztec-private-voting/scripts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy:testnet": "tsx deploy-testnet.ts"
+  },
+  "dependencies": {
+    "@aztec/accounts": "0.85.0-alpha-testnet.11",
+    "@aztec/aztec.js": "0.85.0-alpha-testnet.11",
+    "@aztec/foundation": "0.85.0-alpha-testnet.11"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

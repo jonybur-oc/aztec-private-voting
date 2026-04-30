@@ -1,0 +1,6 @@
+{
+  "network": "aztec-alpha-testnet",
+  "contractAddress": null,
+  "deployedAt": null,
+  "_comment": "Run `npm run deploy:testnet` from the repo root to populate this file. The address written here is what the demo and README should pick up."
+}

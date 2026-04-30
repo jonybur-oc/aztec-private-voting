@@ -347,6 +347,87 @@
   font-size: 13px;
 }
 
+.apv-auditor {
+  margin-top: 24px;
+  padding: 16px 18px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fafafa;
+  display: grid;
+  gap: 12px;
+}
+
+.apv-auditor__title {
+  margin: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+}
+
+.apv-auditor__claims {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.apv-auditor__claims li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 8px;
+  align-items: start;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #222;
+}
+
+.apv-auditor__check {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e6f7ed;
+  color: #1f7a3a;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.apv-auditor__warn {
+  color: #a4232a;
+  font-weight: 600;
+}
+
+.apv-auditor__refs {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.apv-auditor__refs > div {
+  display: flex;
+  gap: 8px;
+}
+
+.apv-auditor__refs dt {
+  color: #555;
+  margin: 0;
+}
+
+.apv-auditor__refs dd {
+  margin: 0;
+  color: #111;
+}
+
+.apv-auditor__refs code {
+  word-break: break-all;
+}
+
 .apv-admin {
   display: grid;
   gap: 20px;

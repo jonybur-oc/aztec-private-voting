@@ -1,0 +1,9 @@
+{
+  "title": "Should the treasury fund this initiative? (50 ETH)",
+  "description": "A demo proposal for the Aztec Private Voting MVP. Replace before any real deployment.",
+  "options": ["For", "Against", "Abstain"],
+  "startTimeOffsetSeconds": 0,
+  "durationSeconds": 604800,
+  "quorum": 5,
+  "eligibilityMode": "open"
+}
