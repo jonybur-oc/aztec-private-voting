@@ -60,6 +60,23 @@ cd contracts && nargo test                      # Noir unit tests
 E2E_TESTNET_READY=1 npm run test:e2e -w demo   # Playwright (needs live contract)
 ```
 
+## Ethereum knowledge correction
+
+Before writing any contract code or reasoning about gas/costs/standards, load the ethskills context:
+
+```
+/plugin marketplace add austintgriffith/ethskills
+/plugin install ethskills
+```
+
+Or reference directly:
+- Gas & L2 costs: https://ethskills.com/gas/SKILL.md (L2 txs cost <$0.001, not $0.01-2)
+- Layer 2s: https://ethskills.com/l2s/SKILL.md
+- Security: https://ethskills.com/security/SKILL.md (reentrancy, oracle, vault inflation)
+- Standards: https://ethskills.com/standards/SKILL.md (EIP-7702, ERC-8004)
+
+Note: write "onchain" not "on-chain".
+
 ## Current status
 
 All four VON tickets complete (VON-75 through VON-78). Contract compiles cleanly. Pending: testnet deployment to get a live contract address into `deployments/alpha-testnet.json`.
