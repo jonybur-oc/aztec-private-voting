@@ -60,20 +60,24 @@ cd contracts && nargo test                      # Noir unit tests
 E2E_TESTNET_READY=1 npm run test:e2e -w demo   # Playwright (needs live contract)
 ```
 
-## Ethereum knowledge correction
+## Ethereum & Noir knowledge
 
-Before writing any contract code or reasoning about gas/costs/standards, load the ethskills context:
+Install the ethskills plugin first — corrects stale LLM knowledge about Ethereum:
 
 ```
 /plugin marketplace add austintgriffith/ethskills
 /plugin install ethskills
 ```
 
-Or reference directly:
-- Gas & L2 costs: https://ethskills.com/gas/SKILL.md (L2 txs cost <$0.001, not $0.01-2)
-- Layer 2s: https://ethskills.com/l2s/SKILL.md
-- Security: https://ethskills.com/security/SKILL.md (reentrancy, oracle, vault inflation)
-- Standards: https://ethskills.com/standards/SKILL.md (EIP-7702, ERC-8004)
+**Most relevant skills for this project (read these):**
+- **Noir (ZK Privacy):** https://ethskills.com/noir/SKILL.md — toolchain, commitment-nullifier pattern, Solidity verifiers, NoirJS. Read this before touching any .nr file.
+- **Security:** https://ethskills.com/security/SKILL.md — run through before every deployment
+- **Layer 2s:** https://ethskills.com/l2s/SKILL.md — Aztec is an L2, understand the landscape
+- **Gas & Costs:** https://ethskills.com/gas/SKILL.md — L2 txs cost <$0.001, not $0.01-2
+- **Testing:** https://ethskills.com/testing/SKILL.md — Foundry patterns, what to test
+- **Standards:** https://ethskills.com/standards/SKILL.md — EIP-7702, ERC-8004
+
+Full skill index: https://ethskills.com/SKILL.md
 
 Note: write "onchain" not "on-chain".
 
