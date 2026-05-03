@@ -35,9 +35,9 @@ The full design rationale — including the specific copy decisions, the alterna
 | `@aztec-private-voting/react` — component library | ✅ merged |
 | Playwright + Noir unit tests (41 user stories) | ✅ merged |
 | Aztec-NR v4.3.0 port | ✅ merged |
-| Alpha testnet deployment | ⏳ pending (v4 vulnerability disclosure — deploying when v5 ships in July) |
+| Alpha testnet deployment | ⏳ testnet ready — holding production deploy for Aztec v5 (July 2026, patch for known v4 vulnerability) |
 
-The contracts compile against Aztec-NR v4.3.0-nightly.20260429. The v4 vulnerability (March 2026 disclosure, patch in v5, July 2026) means we are not deploying real-fund contracts to production yet. The testnet demo works; production deployment targets v5.
+The contracts compile against Aztec-NR v4.3.0-nightly.20260429 (commit cd47773). The Aztec team disclosed a critical vulnerability in Alpha v4 in March 2026, with a patch shipping in v5 (July 2026). We made a deliberate choice not to deploy user-facing governance infrastructure on a known-vulnerable network. The testnet demo works and is deployable; production deployment targets v5. This is the responsible call, not a blocker.
 
 ---
 
@@ -104,9 +104,19 @@ This is calibrated as a tooling + research grant. Wave 2 tooling grants ranged $
 
 ---
 
+## Beyond funding
+
+Three things that matter as much as the grant:
+
+1. **One async technical contact** on the Aztec protocol team — for questions that aren't answered in docs (likely 2-3 exchanges during the v5 migration).
+2. **Signal boost at launch** — a Discord mention or tweet when the component library ships. This is a tooling project; discoverability is the distribution problem.
+3. **Feedback on the receipt design** — if anyone on the Aztec team has opinions on the `docs/receipt-design.md` approach before v5 ships, that input would improve the work. Optional, not required.
+
+---
+
 ## Contact
 
 GitHub: @jonybur-oc  
-Discord: ask in Aztec Discord #grants or DM directly  
+Discord: @jonybur (or ask in #grants)  
 
-Built on Aztec-NR. Willing to demo, pair on integrations, or discuss extending the research.
+Built on Aztec-NR. Willing to demo, pair on integrations, or discuss extending the receipt-design research into a public paper.
