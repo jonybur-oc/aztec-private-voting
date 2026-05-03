@@ -98,6 +98,20 @@ A few specific phrasings we landed on, and the alternatives we rejected:
 - **"This fingerprint proves your vote was counted without revealing how you voted."** - rejected: anything containing "cryptographic," "zero-knowledge," "proof," or "encrypted." All of those are true; none of them are what the voter needs to know in this moment.
 - **"How to verify"** - rejected: "Cryptographic proof," "Verification details," "Audit trail." The first asks the voter to do something; the others ask the voter to read something.
 
+## Related work
+
+The design decisions in this document did not emerge in isolation. Several lines of prior work informed them.
+
+**Receipt-freeness as a formal property.** Benaloh and Tuinstra (1994) defined receipt-freeness: a voting scheme is receipt-free if a voter cannot prove to a third party how they voted, even if they want to. This is the formal property we are trying to support in UX. The vote fingerprint is designed to satisfy the Benaloh/Tuinstra definition — it proves a vote was cast and counted, but not the choice. The current implementation relies on the Aztec network's privacy guarantees at the protocol layer; we are not claiming to have proven receipt-freeness independently.
+
+**Usability in verifiable election systems.** The work around Helios (Adida et al., 2008) and STAR-Vote (Bell et al., 2013) established the central tension: systems with strong cryptographic audit trails are difficult for voters to understand, and the parts voters most want to understand ("was my vote counted?") are least accessible in technically correct outputs. Our approach — collapsing verification by default, renaming the nullifier, prioritizing the one-sentence claim — is a direct response to the comprehension failures documented in usability studies of Helios.
+
+**Mental models in security UIs.** Whitten and Tygar's "Why Johnny Can't Encrypt" (1999) and the follow-on body of work on security usability (Cranor and Garfinkel, 2005) established that technically correct feedback that violates users' mental models is effectively no feedback. The decision to avoid "cryptographic," "zero-knowledge," and "nullifier" in the receipt copy comes directly from this tradition.
+
+**Human-centered AI design principles.** Amershi et al.'s "Guidelines for Human-AI Interaction" (CHI 2019) includes the principle that AI and automated systems should make clear what they did and why, using language the user can act on. The receipt's primary job — "your vote was counted; here is how to verify it later" — is an application of this principle to a cryptographic system where the "action" is the ZK proof and the "why" is receipt-freeness.
+
+**Coercion in blockchain governance.** Kelkar et al.'s work on front-running and ordering manipulation in Ethereum (2020) and subsequent analysis of MEV in governance contexts established that on-chain governance is more susceptible to coercion than off-chain equivalents. The receipt design explicitly does not solve concurrent observation coercion (see Open Questions), but the download-by-default and no-choice-in-receipt decisions address the most common after-the-fact coercion vector ("show me your receipt").
+
 ## Open questions
 
 These are things we did not solve in the MVP and would want to address before any production deployment.
