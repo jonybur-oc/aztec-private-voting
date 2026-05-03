@@ -14,9 +14,11 @@ A voting primitive for DAOs that want secret ballots with verifiable tallies. Me
 
 ## The receipt problem
 
-The hardest part of private voting UX is the receipt - the moment after a voter clicks submit. Most systems hand back a hex string and call it a day. We treat the receipt as the product.
+The hardest part of private voting UX is the receipt — the moment after a voter clicks submit. Every existing system (MACI, Shutter, the NounsDAO experiment) hands back a hex string or a "your vote was recorded" toast. Neither communicates what actually happened.
 
-See [docs/receipt-design.md](docs/receipt-design.md) for the full design rationale, the specific copy decisions, and the open questions we did not solve.
+We treat the receipt as the product. The `<VoteReceipt />` component is built around one design principle: prove the vote was counted without proving how the voter voted. It uses a "vote fingerprint" (the nullifier, renamed for comprehension), download-by-default persistence, and copy written to avoid the words "cryptographic", "zero-knowledge", and "nullifier".
+
+See [`docs/receipt-design.md`](docs/receipt-design.md) for the full design rationale, the specific copy decisions, and the open questions we did not solve.
 
 ## Repo layout
 
@@ -134,4 +136,6 @@ Open <http://localhost:3000> for the active vote, `/closed` for the result + ver
 
 ## Grant
 
-Submitted to Aztec Grants Wave 3. If you're building governance tooling, reach out - we're interested in integrations.
+Applying to Aztec Grants Wave 3. Full application in [`GRANT.md`](GRANT.md).
+
+If you're building governance tooling on Aztec, reach out — we're interested in integrations.
