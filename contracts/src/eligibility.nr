@@ -1,4 +1,6 @@
 use crate::PrivateVoting::VoteConfig;
+use aztec::protocol::address::AztecAddress;
+use aztec::protocol::traits::FromField;
 
 global ELIGIBILITY_MODE_OPEN: u8 = 0;
 global ELIGIBILITY_MODE_TOKEN: u8 = 1;
@@ -31,10 +33,10 @@ fn token_proof_rejects_zero() {
         end_time: 1,
         quorum: 1,
         eligibility_mode: ELIGIBILITY_MODE_TOKEN,
-        token_address: dep::aztec::prelude::AztecAddress::from_field(0xabc),
+        token_address: AztecAddress::from_field(0xabc),
         min_token_balance: 1,
     };
-    verify_token_proof(0, config);
+    verify_eligibility(0, config);
 }
 
 // APV-37: an empty (zero) proof is rejected for allowlist votes.
@@ -47,10 +49,10 @@ fn allowlist_proof_rejects_zero() {
         end_time: 1,
         quorum: 1,
         eligibility_mode: ELIGIBILITY_MODE_ALLOWLIST,
-        token_address: dep::aztec::prelude::AztecAddress::from_field(0),
+        token_address: AztecAddress::from_field(0),
         min_token_balance: 0,
     };
-    verify_allowlist_proof(0, config);
+    verify_eligibility(0, config);
 }
 
 // Open eligibility passes for any (including zero) proof - the contract layer
@@ -64,7 +66,7 @@ fn open_eligibility_accepts_anything() {
         end_time: 1,
         quorum: 1,
         eligibility_mode: ELIGIBILITY_MODE_OPEN,
-        token_address: dep::aztec::prelude::AztecAddress::from_field(0),
+        token_address: AztecAddress::from_field(0),
         min_token_balance: 0,
     };
     verify_eligibility(0, config);
