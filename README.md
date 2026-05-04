@@ -25,10 +25,9 @@ See [`docs/receipt-design.md`](docs/receipt-design.md) for the full design ratio
 ```
 contracts/                     Noir contracts (PrivateVoting + helpers)
   src/
-    main.nr                    contract entrypoint
-    eligibility.nr             eligibility verification
-    tally.nr                   homomorphic-style tally storage
-  Nargo.toml
+    main.nr                    contract entrypoint (PrivateVoting)
+    eligibility.nr             eligibility verification (open / token-gated / allowlist)
+  Nargo.toml                   uses Aztec-NR v4.3.0-nightly
 packages/
   react/                       component library
     src/
@@ -102,18 +101,24 @@ This produces `contracts/target/private_voting-PrivateVoting.json`. Copy that JS
 To deploy a fresh `PrivateVoting` contract to Aztec Alpha testnet:
 
 ```sh
+# Option A — one-shot (bridges Sepolia fee juice + deploys in one command):
+export L1_PRIVATE_KEY=0x<your-sepolia-key>   # needs ~0.01 SepoliaETH
+bash scripts/bridge-and-deploy.sh
+
+# Option B — if fee juice is already bridged:
 npm run deploy:testnet
 ```
 
-Full run book in [docs/deployment.md](docs/deployment.md). The script writes the deployed address to `deployments/alpha-testnet.json`, which the demo reads automatically.
+Full run book in [docs/deployment.md](docs/deployment.md). Both options write the deployed address to `deployments/alpha-testnet.json`, which the demo reads automatically.
 
 ### Aztec Alpha testnet deployment
 
 | Field                | Value                                                           |
 | -------------------- | --------------------------------------------------------------- |
-| Network              | Aztec Alpha testnet (`https://rpc.testnet.aztec-labs.com`)      |
-| `PrivateVoting`      | _populated by `npm run deploy:testnet` - see `deployments/alpha-testnet.json`_ |
-| Deployed at          | _populated by deploy script_                                    |
+| Network              | Aztec Alpha testnet (`https://rpc.testnet.aztec-labs.com`) — L1: Sepolia (chain 11155111) |
+| `PrivateVoting`      | _see `deployments/alpha-testnet.json` (populated by deploy script)_ |
+| Noir version         | Aztec-NR v4.3.0-nightly.20260429                                |
+| ⚠️ Note             | Aztec Alpha v4 has a known vulnerability (disclosed March 2026). Patch ships with v5 (July 2026). Testnet demo is fine; do not use for production governance. |
 
 ## Running the demo locally
 
